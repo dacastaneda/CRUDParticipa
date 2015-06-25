@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPerfilusuarioTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPerfilusuarioLabel_estadoPerfil}"/>
+                    <h:outputText value="#{perfilusuarioController.selected.estadoPerfil}" title="#{bundle.ViewPerfilusuarioTitle_estadoPerfil}"/>
+                    <h:outputText value="#{bundle.ViewPerfilusuarioLabel_idPerfilUsuario}"/>
+                    <h:outputText value="#{perfilusuarioController.selected.idPerfilUsuario}" title="#{bundle.ViewPerfilusuarioTitle_idPerfilUsuario}"/>
+                    <h:outputText value="#{bundle.ViewPerfilusuarioLabel_idPerfil}"/>
+                    <h:outputText value="#{perfilusuarioController.selected.idPerfil}" title="#{bundle.ViewPerfilusuarioTitle_idPerfil}"/>
+                    <h:outputText value="#{bundle.ViewPerfilusuarioLabel_idPersona}"/>
+                    <h:outputText value="#{perfilusuarioController.selected.idPersona}" title="#{bundle.ViewPerfilusuarioTitle_idPersona}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{perfilusuarioController.destroyAndView}" value="#{bundle.ViewPerfilusuarioDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPerfilusuarioEditLink}"/>
+                <br />
+                <h:commandLink action="#{perfilusuarioController.prepareCreate}" value="#{bundle.ViewPerfilusuarioCreateLink}" />
+                <br />
+                <h:commandLink action="#{perfilusuarioController.prepareList}" value="#{bundle.ViewPerfilusuarioShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPerfilusuarioIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

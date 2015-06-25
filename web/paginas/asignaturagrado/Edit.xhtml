@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditAsignaturagradoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditAsignaturagradoLabel_idAsignaturaGrado}" for="idAsignaturaGrado" />
+                    <h:inputText id="idAsignaturaGrado" value="#{asignaturagradoController.selected.idAsignaturaGrado}" title="#{bundle.EditAsignaturagradoTitle_idAsignaturaGrado}" required="true" requiredMessage="#{bundle.EditAsignaturagradoRequiredMessage_idAsignaturaGrado}"/>
+                    <h:outputLabel value="#{bundle.EditAsignaturagradoLabel_asignatura}" for="asignatura" />
+                    <h:selectOneMenu id="asignatura" value="#{asignaturagradoController.selected.asignatura}" title="#{bundle.EditAsignaturagradoTitle_asignatura}" required="true" requiredMessage="#{bundle.EditAsignaturagradoRequiredMessage_asignatura}">
+                        <f:selectItems value="#{asignaturaController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAsignaturagradoLabel_idDocente}" for="idDocente" />
+                    <h:selectOneMenu id="idDocente" value="#{asignaturagradoController.selected.idDocente}" title="#{bundle.EditAsignaturagradoTitle_idDocente}" required="true" requiredMessage="#{bundle.EditAsignaturagradoRequiredMessage_idDocente}">
+                        <f:selectItems value="#{docenteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditAsignaturagradoLabel_grado}" for="grado" />
+                    <h:selectOneMenu id="grado" value="#{asignaturagradoController.selected.grado}" title="#{bundle.EditAsignaturagradoTitle_grado}" required="true" requiredMessage="#{bundle.EditAsignaturagradoRequiredMessage_grado}">
+                        <f:selectItems value="#{gradoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{asignaturagradoController.update}" value="#{bundle.EditAsignaturagradoSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditAsignaturagradoViewLink}"/>
+                <br />
+                <h:commandLink action="#{asignaturagradoController.prepareList}" value="#{bundle.EditAsignaturagradoShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditAsignaturagradoIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

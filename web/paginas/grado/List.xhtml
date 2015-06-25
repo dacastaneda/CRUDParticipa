@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListGradoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListGradoEmpty}" rendered="#{gradoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{gradoController.items.rowCount > 0}">
+                    <h:outputText value="#{gradoController.pagination.pageFirstItem + 1}..#{gradoController.pagination.pageLastItem + 1}/#{gradoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{gradoController.previous}" value="#{bundle.Previous} #{gradoController.pagination.pageSize}" rendered="#{gradoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{gradoController.next}" value="#{bundle.Next} #{gradoController.pagination.pageSize}" rendered="#{gradoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{gradoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGradoTitle_idGrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListGradoTitle_nombreGrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreGrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{gradoController.prepareView}" value="#{bundle.ListGradoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{gradoController.prepareEdit}" value="#{bundle.ListGradoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{gradoController.destroy}" value="#{bundle.ListGradoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{gradoController.prepareCreate}" value="#{bundle.ListGradoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListGradoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

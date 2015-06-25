@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewCursoestudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewCursoestudianteLabel_idGradoUsuario}"/>
+                    <h:outputText value="#{cursoestudianteController.selected.idGradoUsuario}" title="#{bundle.ViewCursoestudianteTitle_idGradoUsuario}"/>
+                    <h:outputText value="#{bundle.ViewCursoestudianteLabel_idUsuario}"/>
+                    <h:outputText value="#{cursoestudianteController.selected.idUsuario}" title="#{bundle.ViewCursoestudianteTitle_idUsuario}"/>
+                    <h:outputText value="#{bundle.ViewCursoestudianteLabel_idgrado}"/>
+                    <h:outputText value="#{cursoestudianteController.selected.idgrado}" title="#{bundle.ViewCursoestudianteTitle_idgrado}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{cursoestudianteController.destroyAndView}" value="#{bundle.ViewCursoestudianteDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewCursoestudianteEditLink}"/>
+                <br />
+                <h:commandLink action="#{cursoestudianteController.prepareCreate}" value="#{bundle.ViewCursoestudianteCreateLink}" />
+                <br />
+                <h:commandLink action="#{cursoestudianteController.prepareList}" value="#{bundle.ViewCursoestudianteShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewCursoestudianteIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

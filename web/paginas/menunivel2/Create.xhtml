@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMenunivel2Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMenunivel2Label_idMenuNivel2}" for="idMenuNivel2" />
+                    <h:inputText id="idMenuNivel2" value="#{menunivel2Controller.selected.idMenuNivel2}" title="#{bundle.CreateMenunivel2Title_idMenuNivel2}" required="true" requiredMessage="#{bundle.CreateMenunivel2RequiredMessage_idMenuNivel2}"/>
+                    <h:outputLabel value="#{bundle.CreateMenunivel2Label_nombreMenuNivel2}" for="nombreMenuNivel2" />
+                    <h:inputText id="nombreMenuNivel2" value="#{menunivel2Controller.selected.nombreMenuNivel2}" title="#{bundle.CreateMenunivel2Title_nombreMenuNivel2}" required="true" requiredMessage="#{bundle.CreateMenunivel2RequiredMessage_nombreMenuNivel2}"/>
+                    <h:outputLabel value="#{bundle.CreateMenunivel2Label_idMenuNivel1}" for="idMenuNivel1" />
+                    <h:selectOneMenu id="idMenuNivel1" value="#{menunivel2Controller.selected.idMenuNivel1}" title="#{bundle.CreateMenunivel2Title_idMenuNivel1}" required="true" requiredMessage="#{bundle.CreateMenunivel2RequiredMessage_idMenuNivel1}">
+                        <f:selectItems value="#{menunivel1Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{menunivel2Controller.create}" value="#{bundle.CreateMenunivel2SaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{menunivel2Controller.prepareList}" value="#{bundle.CreateMenunivel2ShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMenunivel2IndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

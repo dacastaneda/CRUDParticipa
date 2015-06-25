@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNotasTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idActividadCalificada}" for="idActividadCalificada" />
+                    <h:inputText id="idActividadCalificada" value="#{notasController.selected.idActividadCalificada}" title="#{bundle.CreateNotasTitle_idActividadCalificada}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idActividadCalificada}"/>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_idEstudiante}" for="idEstudiante" />
+                    <h:inputText id="idEstudiante" value="#{notasController.selected.idEstudiante}" title="#{bundle.CreateNotasTitle_idEstudiante}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_idEstudiante}"/>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_nota}" for="nota" />
+                    <h:inputText id="nota" value="#{notasController.selected.nota}" title="#{bundle.CreateNotasTitle_nota}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_nota}"/>
+                    <h:outputLabel value="#{bundle.CreateNotasLabel_actividadacalificar}" for="actividadacalificar" />
+                    <h:selectOneMenu id="actividadacalificar" value="#{notasController.selected.actividadacalificar}" title="#{bundle.CreateNotasTitle_actividadacalificar}" required="true" requiredMessage="#{bundle.CreateNotasRequiredMessage_actividadacalificar}">
+                        <f:selectItems value="#{actividadacalificarController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{notasController.create}" value="#{bundle.CreateNotasSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{notasController.prepareList}" value="#{bundle.CreateNotasShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNotasIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

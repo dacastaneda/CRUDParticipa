@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListCursoestudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListCursoestudianteEmpty}" rendered="#{cursoestudianteController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{cursoestudianteController.items.rowCount > 0}">
+                    <h:outputText value="#{cursoestudianteController.pagination.pageFirstItem + 1}..#{cursoestudianteController.pagination.pageLastItem + 1}/#{cursoestudianteController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{cursoestudianteController.previous}" value="#{bundle.Previous} #{cursoestudianteController.pagination.pageSize}" rendered="#{cursoestudianteController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{cursoestudianteController.next}" value="#{bundle.Next} #{cursoestudianteController.pagination.pageSize}" rendered="#{cursoestudianteController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{cursoestudianteController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCursoestudianteTitle_idGradoUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idGradoUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCursoestudianteTitle_idUsuario}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idUsuario}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListCursoestudianteTitle_idgrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idgrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{cursoestudianteController.prepareView}" value="#{bundle.ListCursoestudianteViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cursoestudianteController.prepareEdit}" value="#{bundle.ListCursoestudianteEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{cursoestudianteController.destroy}" value="#{bundle.ListCursoestudianteDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{cursoestudianteController.prepareCreate}" value="#{bundle.ListCursoestudianteCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListCursoestudianteIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

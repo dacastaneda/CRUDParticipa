@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditPeriodocalificableTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditPeriodocalificableLabel_idperiodoCalificable}" for="idperiodoCalificable" />
+                    <h:inputText id="idperiodoCalificable" value="#{periodocalificableController.selected.idperiodoCalificable}" title="#{bundle.EditPeriodocalificableTitle_idperiodoCalificable}" required="true" requiredMessage="#{bundle.EditPeriodocalificableRequiredMessage_idperiodoCalificable}"/>
+                    <h:outputLabel value="#{bundle.EditPeriodocalificableLabel_nombrePeriodoCalificable}" for="nombrePeriodoCalificable" />
+                    <h:inputText id="nombrePeriodoCalificable" value="#{periodocalificableController.selected.nombrePeriodoCalificable}" title="#{bundle.EditPeriodocalificableTitle_nombrePeriodoCalificable}" required="true" requiredMessage="#{bundle.EditPeriodocalificableRequiredMessage_nombrePeriodoCalificable}"/>
+                    <h:outputLabel value="#{bundle.EditPeriodocalificableLabel_idPeriodoLectivo}" for="idPeriodoLectivo" />
+                    <h:selectOneMenu id="idPeriodoLectivo" value="#{periodocalificableController.selected.idPeriodoLectivo}" title="#{bundle.EditPeriodocalificableTitle_idPeriodoLectivo}" required="true" requiredMessage="#{bundle.EditPeriodocalificableRequiredMessage_idPeriodoLectivo}">
+                        <f:selectItems value="#{periodolectivoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{periodocalificableController.update}" value="#{bundle.EditPeriodocalificableSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditPeriodocalificableViewLink}"/>
+                <br />
+                <h:commandLink action="#{periodocalificableController.prepareList}" value="#{bundle.EditPeriodocalificableShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditPeriodocalificableIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateMenunivel3Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateMenunivel3Label_idMenuNivel3}" for="idMenuNivel3" />
+                    <h:inputText id="idMenuNivel3" value="#{menunivel3Controller.selected.idMenuNivel3}" title="#{bundle.CreateMenunivel3Title_idMenuNivel3}" required="true" requiredMessage="#{bundle.CreateMenunivel3RequiredMessage_idMenuNivel3}"/>
+                    <h:outputLabel value="#{bundle.CreateMenunivel3Label_nombreMenuNivel3}" for="nombreMenuNivel3" />
+                    <h:inputText id="nombreMenuNivel3" value="#{menunivel3Controller.selected.nombreMenuNivel3}" title="#{bundle.CreateMenunivel3Title_nombreMenuNivel3}" required="true" requiredMessage="#{bundle.CreateMenunivel3RequiredMessage_nombreMenuNivel3}"/>
+                    <h:outputLabel value="#{bundle.CreateMenunivel3Label_idMenuNivel2}" for="idMenuNivel2" />
+                    <h:selectOneMenu id="idMenuNivel2" value="#{menunivel3Controller.selected.idMenuNivel2}" title="#{bundle.CreateMenunivel3Title_idMenuNivel2}" required="true" requiredMessage="#{bundle.CreateMenunivel3RequiredMessage_idMenuNivel2}">
+                        <f:selectItems value="#{menunivel2Controller.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateMenunivel3Label_idPerfil}" for="idPerfil" />
+                    <h:selectOneMenu id="idPerfil" value="#{menunivel3Controller.selected.idPerfil}" title="#{bundle.CreateMenunivel3Title_idPerfil}" required="true" requiredMessage="#{bundle.CreateMenunivel3RequiredMessage_idPerfil}">
+                        <f:selectItems value="#{perfilController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{menunivel3Controller.create}" value="#{bundle.CreateMenunivel3SaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{menunivel3Controller.prepareList}" value="#{bundle.CreateMenunivel3ShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateMenunivel3IndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

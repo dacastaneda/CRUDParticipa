@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditMenunivel1Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditMenunivel1Label_idMenuNivel1}" for="idMenuNivel1" />
+                    <h:inputText id="idMenuNivel1" value="#{menunivel1Controller.selected.idMenuNivel1}" title="#{bundle.EditMenunivel1Title_idMenuNivel1}" required="true" requiredMessage="#{bundle.EditMenunivel1RequiredMessage_idMenuNivel1}"/>
+                    <h:outputLabel value="#{bundle.EditMenunivel1Label_nombreMenuNivel1}" for="nombreMenuNivel1" />
+                    <h:inputText id="nombreMenuNivel1" value="#{menunivel1Controller.selected.nombreMenuNivel1}" title="#{bundle.EditMenunivel1Title_nombreMenuNivel1}" required="true" requiredMessage="#{bundle.EditMenunivel1RequiredMessage_nombreMenuNivel1}"/>
+                </h:panelGrid>
+                <h:commandLink action="#{menunivel1Controller.update}" value="#{bundle.EditMenunivel1SaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditMenunivel1ViewLink}"/>
+                <br />
+                <h:commandLink action="#{menunivel1Controller.prepareList}" value="#{bundle.EditMenunivel1ShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditMenunivel1IndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

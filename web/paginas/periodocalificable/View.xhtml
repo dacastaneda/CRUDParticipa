@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewPeriodocalificableTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewPeriodocalificableLabel_idperiodoCalificable}"/>
+                    <h:outputText value="#{periodocalificableController.selected.idperiodoCalificable}" title="#{bundle.ViewPeriodocalificableTitle_idperiodoCalificable}"/>
+                    <h:outputText value="#{bundle.ViewPeriodocalificableLabel_nombrePeriodoCalificable}"/>
+                    <h:outputText value="#{periodocalificableController.selected.nombrePeriodoCalificable}" title="#{bundle.ViewPeriodocalificableTitle_nombrePeriodoCalificable}"/>
+                    <h:outputText value="#{bundle.ViewPeriodocalificableLabel_idPeriodoLectivo}"/>
+                    <h:outputText value="#{periodocalificableController.selected.idPeriodoLectivo}" title="#{bundle.ViewPeriodocalificableTitle_idPeriodoLectivo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{periodocalificableController.destroyAndView}" value="#{bundle.ViewPeriodocalificableDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewPeriodocalificableEditLink}"/>
+                <br />
+                <h:commandLink action="#{periodocalificableController.prepareCreate}" value="#{bundle.ViewPeriodocalificableCreateLink}" />
+                <br />
+                <h:commandLink action="#{periodocalificableController.prepareList}" value="#{bundle.ViewPeriodocalificableShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewPeriodocalificableIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

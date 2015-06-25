@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListPeriodolectivoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListPeriodolectivoEmpty}" rendered="#{periodolectivoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{periodolectivoController.items.rowCount > 0}">
+                    <h:outputText value="#{periodolectivoController.pagination.pageFirstItem + 1}..#{periodolectivoController.pagination.pageLastItem + 1}/#{periodolectivoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{periodolectivoController.previous}" value="#{bundle.Previous} #{periodolectivoController.pagination.pageSize}" rendered="#{periodolectivoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{periodolectivoController.next}" value="#{bundle.Next} #{periodolectivoController.pagination.pageSize}" rendered="#{periodolectivoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{periodolectivoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodolectivoTitle_idPeriodoLectivo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPeriodoLectivo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListPeriodolectivoTitle_ano}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.ano}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{periodolectivoController.prepareView}" value="#{bundle.ListPeriodolectivoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{periodolectivoController.prepareEdit}" value="#{bundle.ListPeriodolectivoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{periodolectivoController.destroy}" value="#{bundle.ListPeriodolectivoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{periodolectivoController.prepareCreate}" value="#{bundle.ListPeriodolectivoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListPeriodolectivoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

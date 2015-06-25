@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListActividadacalificarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListActividadacalificarEmpty}" rendered="#{actividadacalificarController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{actividadacalificarController.items.rowCount > 0}">
+                    <h:outputText value="#{actividadacalificarController.pagination.pageFirstItem + 1}..#{actividadacalificarController.pagination.pageLastItem + 1}/#{actividadacalificarController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{actividadacalificarController.previous}" value="#{bundle.Previous} #{actividadacalificarController.pagination.pageSize}" rendered="#{actividadacalificarController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{actividadacalificarController.next}" value="#{bundle.Next} #{actividadacalificarController.pagination.pageSize}" rendered="#{actividadacalificarController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{actividadacalificarController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_idActividadCalificada}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idActividadCalificada}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_tipo}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tipo}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_fechaInicial}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaInicial}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_fechaFinal}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fechaFinal}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_notas}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.notas}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_idLogro}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idLogro}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListActividadacalificarTitle_idperiodoCalificable}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idperiodoCalificable}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{actividadacalificarController.prepareView}" value="#{bundle.ListActividadacalificarViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{actividadacalificarController.prepareEdit}" value="#{bundle.ListActividadacalificarEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{actividadacalificarController.destroy}" value="#{bundle.ListActividadacalificarDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{actividadacalificarController.prepareCreate}" value="#{bundle.ListActividadacalificarCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListActividadacalificarIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewActividadacalificarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_idActividadCalificada}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.idActividadCalificada}" title="#{bundle.ViewActividadacalificarTitle_idActividadCalificada}"/>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_tipo}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.tipo}" title="#{bundle.ViewActividadacalificarTitle_tipo}"/>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_fechaInicial}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.fechaInicial}" title="#{bundle.ViewActividadacalificarTitle_fechaInicial}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_fechaFinal}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.fechaFinal}" title="#{bundle.ViewActividadacalificarTitle_fechaFinal}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_notas}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.notas}" title="#{bundle.ViewActividadacalificarTitle_notas}"/>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_idLogro}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.idLogro}" title="#{bundle.ViewActividadacalificarTitle_idLogro}"/>
+                    <h:outputText value="#{bundle.ViewActividadacalificarLabel_idperiodoCalificable}"/>
+                    <h:outputText value="#{actividadacalificarController.selected.idperiodoCalificable}" title="#{bundle.ViewActividadacalificarTitle_idperiodoCalificable}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{actividadacalificarController.destroyAndView}" value="#{bundle.ViewActividadacalificarDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewActividadacalificarEditLink}"/>
+                <br />
+                <h:commandLink action="#{actividadacalificarController.prepareCreate}" value="#{bundle.ViewActividadacalificarCreateLink}" />
+                <br />
+                <h:commandLink action="#{actividadacalificarController.prepareList}" value="#{bundle.ViewActividadacalificarShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewActividadacalificarIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

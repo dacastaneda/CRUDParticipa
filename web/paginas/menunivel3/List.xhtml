@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListMenunivel3Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListMenunivel3Empty}" rendered="#{menunivel3Controller.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{menunivel3Controller.items.rowCount > 0}">
+                    <h:outputText value="#{menunivel3Controller.pagination.pageFirstItem + 1}..#{menunivel3Controller.pagination.pageLastItem + 1}/#{menunivel3Controller.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{menunivel3Controller.previous}" value="#{bundle.Previous} #{menunivel3Controller.pagination.pageSize}" rendered="#{menunivel3Controller.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{menunivel3Controller.next}" value="#{bundle.Next} #{menunivel3Controller.pagination.pageSize}" rendered="#{menunivel3Controller.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{menunivel3Controller.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMenunivel3Title_idMenuNivel3}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMenuNivel3}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMenunivel3Title_nombreMenuNivel3}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nombreMenuNivel3}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMenunivel3Title_idMenuNivel2}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idMenuNivel2}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListMenunivel3Title_idPerfil}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idPerfil}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{menunivel3Controller.prepareView}" value="#{bundle.ListMenunivel3ViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{menunivel3Controller.prepareEdit}" value="#{bundle.ListMenunivel3EditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{menunivel3Controller.destroy}" value="#{bundle.ListMenunivel3DestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{menunivel3Controller.prepareCreate}" value="#{bundle.ListMenunivel3CreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListMenunivel3IndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

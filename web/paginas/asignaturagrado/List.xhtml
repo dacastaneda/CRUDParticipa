@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListAsignaturagradoTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListAsignaturagradoEmpty}" rendered="#{asignaturagradoController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{asignaturagradoController.items.rowCount > 0}">
+                    <h:outputText value="#{asignaturagradoController.pagination.pageFirstItem + 1}..#{asignaturagradoController.pagination.pageLastItem + 1}/#{asignaturagradoController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{asignaturagradoController.previous}" value="#{bundle.Previous} #{asignaturagradoController.pagination.pageSize}" rendered="#{asignaturagradoController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{asignaturagradoController.next}" value="#{bundle.Next} #{asignaturagradoController.pagination.pageSize}" rendered="#{asignaturagradoController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{asignaturagradoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsignaturagradoTitle_idAsignaturaGrado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idAsignaturaGrado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsignaturagradoTitle_asignatura}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.asignatura}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsignaturagradoTitle_idDocente}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idDocente}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListAsignaturagradoTitle_grado}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.grado}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{asignaturagradoController.prepareView}" value="#{bundle.ListAsignaturagradoViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{asignaturagradoController.prepareEdit}" value="#{bundle.ListAsignaturagradoEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{asignaturagradoController.destroy}" value="#{bundle.ListAsignaturagradoDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{asignaturagradoController.prepareCreate}" value="#{bundle.ListAsignaturagradoCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListAsignaturagradoIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

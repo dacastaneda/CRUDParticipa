@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateActividadacalificarTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_idActividadCalificada}" for="idActividadCalificada" />
+                    <h:inputText id="idActividadCalificada" value="#{actividadacalificarController.selected.idActividadCalificada}" title="#{bundle.CreateActividadacalificarTitle_idActividadCalificada}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_idActividadCalificada}"/>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_tipo}" for="tipo" />
+                    <h:inputText id="tipo" value="#{actividadacalificarController.selected.tipo}" title="#{bundle.CreateActividadacalificarTitle_tipo}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_tipo}"/>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_fechaInicial}" for="fechaInicial" />
+                    <h:inputText id="fechaInicial" value="#{actividadacalificarController.selected.fechaInicial}" title="#{bundle.CreateActividadacalificarTitle_fechaInicial}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_fechaInicial}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_fechaFinal}" for="fechaFinal" />
+                    <h:inputText id="fechaFinal" value="#{actividadacalificarController.selected.fechaFinal}" title="#{bundle.CreateActividadacalificarTitle_fechaFinal}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_fechaFinal}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_notas}" for="notas" />
+                    <h:selectOneMenu id="notas" value="#{actividadacalificarController.selected.notas}" title="#{bundle.CreateActividadacalificarTitle_notas}" >
+                        <f:selectItems value="#{notasController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_idLogro}" for="idLogro" />
+                    <h:selectOneMenu id="idLogro" value="#{actividadacalificarController.selected.idLogro}" title="#{bundle.CreateActividadacalificarTitle_idLogro}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_idLogro}">
+                        <f:selectItems value="#{logroController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateActividadacalificarLabel_idperiodoCalificable}" for="idperiodoCalificable" />
+                    <h:selectOneMenu id="idperiodoCalificable" value="#{actividadacalificarController.selected.idperiodoCalificable}" title="#{bundle.CreateActividadacalificarTitle_idperiodoCalificable}" required="true" requiredMessage="#{bundle.CreateActividadacalificarRequiredMessage_idperiodoCalificable}">
+                        <f:selectItems value="#{periodocalificableController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{actividadacalificarController.create}" value="#{bundle.CreateActividadacalificarSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{actividadacalificarController.prepareList}" value="#{bundle.CreateActividadacalificarShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateActividadacalificarIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

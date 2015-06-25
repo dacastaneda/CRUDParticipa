@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditCursoestudianteTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditCursoestudianteLabel_idGradoUsuario}" for="idGradoUsuario" />
+                    <h:inputText id="idGradoUsuario" value="#{cursoestudianteController.selected.idGradoUsuario}" title="#{bundle.EditCursoestudianteTitle_idGradoUsuario}" required="true" requiredMessage="#{bundle.EditCursoestudianteRequiredMessage_idGradoUsuario}"/>
+                    <h:outputLabel value="#{bundle.EditCursoestudianteLabel_idUsuario}" for="idUsuario" />
+                    <h:selectOneMenu id="idUsuario" value="#{cursoestudianteController.selected.idUsuario}" title="#{bundle.EditCursoestudianteTitle_idUsuario}" required="true" requiredMessage="#{bundle.EditCursoestudianteRequiredMessage_idUsuario}">
+                        <f:selectItems value="#{estudianteController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditCursoestudianteLabel_idgrado}" for="idgrado" />
+                    <h:selectOneMenu id="idgrado" value="#{cursoestudianteController.selected.idgrado}" title="#{bundle.EditCursoestudianteTitle_idgrado}" required="true" requiredMessage="#{bundle.EditCursoestudianteRequiredMessage_idgrado}">
+                        <f:selectItems value="#{gradoController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{cursoestudianteController.update}" value="#{bundle.EditCursoestudianteSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditCursoestudianteViewLink}"/>
+                <br />
+                <h:commandLink action="#{cursoestudianteController.prepareList}" value="#{bundle.EditCursoestudianteShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditCursoestudianteIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

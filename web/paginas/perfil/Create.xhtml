@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreatePerfilTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreatePerfilLabel_idPerfil}" for="idPerfil" />
+                    <h:inputText id="idPerfil" value="#{perfilController.selected.idPerfil}" title="#{bundle.CreatePerfilTitle_idPerfil}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_idPerfil}"/>
+                    <h:outputLabel value="#{bundle.CreatePerfilLabel_nombrePerfil}" for="nombrePerfil" />
+                    <h:inputText id="nombrePerfil" value="#{perfilController.selected.nombrePerfil}" title="#{bundle.CreatePerfilTitle_nombrePerfil}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_nombrePerfil}"/>
+                    <h:outputLabel value="#{bundle.CreatePerfilLabel_descripcionPerfil}" for="descripcionPerfil" />
+                    <h:inputText id="descripcionPerfil" value="#{perfilController.selected.descripcionPerfil}" title="#{bundle.CreatePerfilTitle_descripcionPerfil}" required="true" requiredMessage="#{bundle.CreatePerfilRequiredMessage_descripcionPerfil}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{perfilController.create}" value="#{bundle.CreatePerfilSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{perfilController.prepareList}" value="#{bundle.CreatePerfilShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreatePerfilIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

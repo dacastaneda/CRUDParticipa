@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewMenunivel3Title}"></h:outputText>
+        </ui:define>
+        <ui:define name="content">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewMenunivel3Label_idMenuNivel3}"/>
+                    <h:outputText value="#{menunivel3Controller.selected.idMenuNivel3}" title="#{bundle.ViewMenunivel3Title_idMenuNivel3}"/>
+                    <h:outputText value="#{bundle.ViewMenunivel3Label_nombreMenuNivel3}"/>
+                    <h:outputText value="#{menunivel3Controller.selected.nombreMenuNivel3}" title="#{bundle.ViewMenunivel3Title_nombreMenuNivel3}"/>
+                    <h:outputText value="#{bundle.ViewMenunivel3Label_idMenuNivel2}"/>
+                    <h:outputText value="#{menunivel3Controller.selected.idMenuNivel2}" title="#{bundle.ViewMenunivel3Title_idMenuNivel2}"/>
+                    <h:outputText value="#{bundle.ViewMenunivel3Label_idPerfil}"/>
+                    <h:outputText value="#{menunivel3Controller.selected.idPerfil}" title="#{bundle.ViewMenunivel3Title_idPerfil}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{menunivel3Controller.destroyAndView}" value="#{bundle.ViewMenunivel3DestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewMenunivel3EditLink}"/>
+                <br />
+                <h:commandLink action="#{menunivel3Controller.prepareCreate}" value="#{bundle.ViewMenunivel3CreateLink}" />
+                <br />
+                <h:commandLink action="#{menunivel3Controller.prepareList}" value="#{bundle.ViewMenunivel3ShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewMenunivel3IndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
